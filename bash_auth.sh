@@ -7,8 +7,9 @@
 xdg-open "http://localhost:3000/login" &
 
 # create endpoint and get access token
+echo "Waiting for access token..."
 port=54672
-access_token=$(echo -e "HTTP/1.1 200 OK\n\n" | nc -l -p $port -q 1 | grep -oP 'access_token=\K[^&]*')
+access_token=$(echo -e "HTTP/1.1 200 OK\n\n{\"You can close the browser now :)\"}" | nc -l -p $port -q 1 | grep -oP 'access_token=\K[^&]*')
 
 # Print the access token
 echo "Access Token: $access_token"
